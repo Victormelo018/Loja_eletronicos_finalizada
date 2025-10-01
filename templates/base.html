@@ -33,7 +33,7 @@
 
                             <hr>
 
-                            <form action="{%url 'logout'%}" method="post">
+                            <form action="{%url 'logout' %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit">Sair</button>
                             </form>
@@ -41,7 +41,7 @@
                     </div>
             
                 {% else %}
-                    <a href="{% url 'login%'}">Login</a>
+                    <a href="{% url 'login' %}">Login</a>
                     <a  href="{% url 'registrar' %}">registrar</a>
                 {% endif %}
             </div>
@@ -50,13 +50,18 @@
 
         <main>
             {% if messages %}
+           
                 <div>
                     {% for message in messages %}
                     <div>
                         {{ message}}
                     </div>
+                    {% endfor %}
                 </div>
+         {% endif %}
            {% block content %}
+             
+
            {% endblock %}
         </div>
     </main>

@@ -56,7 +56,7 @@ def remover_do_carrinho(request, produto_id):
     return redirect('ver_carrinho')
 
 @login_required 
-def checkout(request)
+def checkout(request):
     carrinho =Carrinho(request)
 
     for item in carrinho:
