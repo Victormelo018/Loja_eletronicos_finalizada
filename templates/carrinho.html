@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Carrinho de compras{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mb-5">Carrinho de Compras</h1>
+
+        {% if carrinho|length > 0 %}
+            <div class="cart-container">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Preço Total</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in carrinho %}
+                            {% with produto=item.produto %}
+                                <tr>
+                                    <td>{{ produto.nome }}</td>
+                                    <td>{{ item.quantidade }}</td>
+                                    <td>R$ {{ item.preco }}</td>
+                                    <td>R$ {{ item.preco_total }}</td>
+                                    <td>
+                                        <a href="{% url 'remover_do_carrinho' produto.id %}" class="btn btn-danger btn-sm">Remover</a>
+                                    </td>
+                                </tr>
+                            {% endwith %}
+                        {% endfor %}
+                        <tr class="cart-total">
+                            <td colspan="3"><strong>Total:</strong></td>
+                            <td colspan="2"><strong>R$ {{ carrinho.get_total_preco }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cart-actions">
+                <a href="{% url 'lista_produtos' %}" class="btn btn-secondary">Continuar Comprando</a>
+                <a href="{% url 'checkout' %}" class="btn btn-success">Finalizar Compra</a>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p class="mb-4">Seu carrinho está vazio.</p>
+                <a href="{% url 'lista_produtos' %}" class="btn btn-primary">Ver Produtos</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

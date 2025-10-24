@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Sobre Nós{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h1 class="text-center mb-5">Sobre Nós</h1>
+
+        <p class="mb-4">
+            Este site foi desenvolvido durante as aulas do professor Jefferson, como parte de um projeto prático de programação.
+            Meu nome é Victor, tenho 22 anos e criei este site com o objetivo de aplicar o que aprendi em sala de aula, unindo tecnologia e criatividade.
+        </p>
+
+        <p class="mb-4">
+            A Loja é focada na venda de produtos eletrônicos, oferecendo qualidade, variedade e os melhores preços para quem ama eletrônicos.
+            Nosso compromisso é proporcionar uma experiência de compra simples, rápida e segura — feita de estudante para cliente, com muita dedicação.
+        </p>
+
+        <div class="text-center mt-5">
+            <a href="{% url 'lista_produtos' %}" class="btn btn-primary">Ver Produtos</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

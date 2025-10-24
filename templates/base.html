@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Loja</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'lista_produtos' %}">Loja Victor Eletrônicos</a>
+            
+            <div class="menu">
+                <a href="{% url 'lista_produtos' %}">Produtos</a>
+                <a href="{% url 'produtos_filtrados' %}">Pesquisar</a>
+                <a href="{% url 'sobre' %}">Sobre</a>
+                <a href="{% url 'contato' %}">Contato</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'ver_carrinho' %}">Carrinho ({{ carrinho|length }})</a>
+                    
+                    <div class="user-menu">
+                        <button class="btn btn-secondary user-menu-btn" id="user-menu-btn">
+                            Olá, {{ user.first_name|default:user.username }}
+                        </button>
+
+                        <div class="user-options">
+                            <form action="{% url 'minha_conta' %}" method="get">
+                                <button type="submit" class="user-menu-btn">Minha Conta</button>
+                            </form>
+
+                            <hr>
+
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="user-menu-btn">Sair</button>
+                            </form>
+                        </div>
+                    </div>
+            
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'registrar' %}">Registrar</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>Loja</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userMenuBtn = document.getElementById('user-menu-btn');
+            const userMenu = document.querySelector('.user-menu');
+
+            // Toggle menu on button click
+            userMenuBtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent event bubbling
+                userMenu.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!userMenu.contains(event.target)) {
+                    userMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
