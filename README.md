@@ -1,4 +1,5 @@
 # 🛍️ Minha Loja - E-commerce Django
+Disponivel em : https://vmelo1826.pythonanywhere.com/
 
 Uma aplicação de e-commerce moderna e responsiva desenvolvida em Django, com design profissional seguindo as heurísticas de usabilidade.
 
@@ -238,19 +239,9 @@ STATICFILES_DIRS = [
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
-## 👥 Autores
+## 👥 Autor
 
 - **Victor Melo da Costa** - [@Victormelo018](https://github.com/Victormelo018)
-- **Calebe Santos** - [@calebe-santos](https://github.com/calebe-santos)
 
-## 🙏 Agradecimentos
-
-- Comunidade Django
-- Contribuidores do projeto
-- Usuários que testaram e forneceram feedback
-
----
-
-**Desenvolvido com ❤️ para proporcionar a melhor experiência de compra online!**
 
 
